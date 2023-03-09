@@ -1,3 +1,9 @@
+import Layout from "@/components/layout";
+
 export default function Stars() {
-    return <p>Stars</p>;
+    return (
+        <Layout>
+            <p>Stars</p>
+        </Layout>
+    );
 }

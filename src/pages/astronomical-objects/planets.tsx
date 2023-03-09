@@ -1,4 +1,5 @@
 import { getPlanets } from "@/apis/astronomicalObjects";
+import Layout from "@/components/layout";
 import Planet from "@/models/astronomicalObjects/planet";
 import { useEffect, useState } from "react";
 
@@ -9,5 +10,9 @@ export default function Planets() {
         getPlanets().then((response) => setPlanets(response.data));
     }, []);
 
-    return <p>Planets</p>;
+    return (
+        <Layout>
+            <p>Planets</p>
+        </Layout>
+    );
 }

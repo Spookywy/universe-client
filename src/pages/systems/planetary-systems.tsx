@@ -1,3 +1,9 @@
+import Layout from "@/components/layout";
+
 export default function PlanetarySystems() {
-    return <p>Planetary Systems</p>;
+    return (
+        <Layout>
+            <p>Planetary Systems</p>
+        </Layout>
+    );
 }

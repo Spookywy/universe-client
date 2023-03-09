@@ -1,3 +1,9 @@
+import Layout from "@/components/layout";
+
 export default function Galaxies() {
-    return <p>Galaxies</p>;
+    return (
+        <Layout>
+            <p>Galaxies</p>
+        </Layout>
+    );
 }
