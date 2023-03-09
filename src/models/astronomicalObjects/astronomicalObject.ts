@@ -6,7 +6,7 @@ export default interface AstronomicalObject {
     url: string;
     name: string;
     image: string;
-    distance_from_earth: DistanceFromEarth;
+    distance_from_earth?: DistanceFromEarth;
     mass: Mass;
     radius: number;
     surface_temperature: number;
