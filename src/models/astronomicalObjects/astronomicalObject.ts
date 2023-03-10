@@ -1,4 +1,3 @@
-import PlanetarySystem from "../systems/planetarySystem";
 import DistanceFromEarth from "../utils/distanceFromEarth";
 import Mass from "../utils/mass";
 
@@ -10,5 +9,5 @@ export default interface AstronomicalObject {
     mass: Mass;
     radius: number;
     surface_temperature: number;
-    planetary_system: PlanetarySystem;
+    planetary_system: string;
 }
