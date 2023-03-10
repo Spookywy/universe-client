@@ -2,8 +2,6 @@ import { getPlanets } from "@/apis/astronomicalObjects";
 import { AstronomicalObjectTile } from "@/components/astronomicalObjects/astronomicalObjectTile";
 import Layout from "@/components/layout";
 import Planet from "@/models/astronomicalObjects/planet";
-import DistanceFromEarth from "@/models/utils/distanceFromEarth";
-import Mass from "@/models/utils/mass";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
@@ -13,20 +11,7 @@ export default function Planets() {
 
     useEffect(() => {
         getPlanets().then((response) => {
-            let planets = response.data;
-            planets.forEach((planet) => {
-                let mass = planet.mass;
-                planet.mass = new Mass(mass.value, mass.unit_of_measure);
-
-                let distanceFromEarth = planet.distance_from_earth;
-                if (!distanceFromEarth) return;
-
-                planet.distance_from_earth = new DistanceFromEarth(
-                    distanceFromEarth.value,
-                    distanceFromEarth.unit_of_measure
-                );
-            });
-            setPlanets(planets);
+            setPlanets(response.data);
         });
     }, []);
 

@@ -38,14 +38,20 @@ export function AstronomicalObjectTile({
             <div className="flex">
                 <p className="mr-2 font-semibold">Distance from earth:</p>
                 {astronomicalObject.distance_from_earth ? (
-                    <p>{astronomicalObject.distance_from_earth.toString()}</p>
+                    <p>
+                        {astronomicalObject.distance_from_earth.value}{" "}
+                        {astronomicalObject.distance_from_earth.unit_of_measure}
+                    </p>
                 ) : (
                     <p>-</p>
                 )}
             </div>
             <div className="flex">
                 <p className="mr-2 font-semibold">Mass:</p>
-                <p>{astronomicalObject.mass.toString()}</p>
+                <p>
+                    {astronomicalObject.mass.value}{" "}
+                    {astronomicalObject.mass.unit_of_measure}
+                </p>
             </div>
             <div className="flex">
                 <p className="mr-2 font-semibold">Radius:</p>
