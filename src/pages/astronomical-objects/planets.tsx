@@ -10,9 +10,7 @@ export default function Planets() {
     const [planets, setPlanets] = useState<Planet[]>([]);
 
     useEffect(() => {
-        getPlanets().then((response) => {
-            setPlanets(response.data);
-        });
+        getPlanets().then((response) => setPlanets(response.data));
     }, []);
 
     return (
