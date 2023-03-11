@@ -26,7 +26,7 @@ export default function SystemTile({ system }: SystemTileProps) {
     });
 
     return (
-        <div className="m-5 flex w-1/4 flex-col items-center rounded-lg bg-slate-50 p-5 shadow-xl">
+        <div className="m-5 flex w-96 flex-col items-center rounded-lg bg-slate-50 p-5 shadow-xl">
             <p className="mb-4 text-center text-lg font-bold uppercase">
                 {system.name}
             </p>

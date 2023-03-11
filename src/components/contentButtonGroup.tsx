@@ -4,7 +4,7 @@ import ContentButton from "./contentButton";
 
 export default function ContentButtonGroup() {
     return (
-        <div className="mr-20 ml-20 flex justify-between">
+        <div className="mb-10 flex flex-col items-center justify-center md:flex-row">
             <ContentButton
                 name="Galaxies"
                 icon={faFan}
