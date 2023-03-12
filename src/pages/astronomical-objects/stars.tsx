@@ -4,15 +4,24 @@ import Layout from "@/components/layout";
 import Star from "@/models/astronomicalObjects/star";
 import { faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
 
-export default function Stars() {
-    const [stars, setStars] = useState<Star[]>([]);
+export async function getStaticProps() {
+    const starsResponse = await getStars();
+    const stars = starsResponse.data;
 
-    useEffect(() => {
-        getStars().then((response) => setStars(response.data));
-    }, []);
+    return {
+        props: {
+            stars,
+        },
+        revalidate: 60,
+    };
+}
 
+type StarsProps = {
+    stars: Star[];
+};
+
+export default function Stars({ stars }: StarsProps) {
     return (
         <Layout>
             <div className="flex flex-col items-center">

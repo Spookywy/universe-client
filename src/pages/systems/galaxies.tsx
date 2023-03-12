@@ -4,15 +4,24 @@ import SystemTile from "@/components/systems/systemTile";
 import Galaxy from "@/models/systems/galaxy";
 import { faFan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
 
-export default function Galaxies() {
-    const [galaxies, setGalaxies] = useState<Galaxy[]>([]);
+export async function getStaticProps() {
+    const galaxiesResponse = await getGalaxies();
+    const galaxies = galaxiesResponse.data;
 
-    useEffect(() => {
-        getGalaxies().then((response) => setGalaxies(response.data));
-    }, []);
+    return {
+        props: {
+            galaxies,
+        },
+        revalidate: 60,
+    };
+}
 
+type GalaxiesProps = {
+    galaxies: Galaxy[];
+};
+
+export default function Galaxies({ galaxies }: GalaxiesProps) {
     return (
         <Layout>
             <div className="flex flex-col items-center">

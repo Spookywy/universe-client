@@ -4,15 +4,24 @@ import Layout from "@/components/layout";
 import Planet from "@/models/astronomicalObjects/planet";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
 
-export default function Planets() {
-    const [planets, setPlanets] = useState<Planet[]>([]);
+export async function getStaticProps() {
+    const planetsResponse = await getPlanets();
+    const planets = planetsResponse.data;
 
-    useEffect(() => {
-        getPlanets().then((response) => setPlanets(response.data));
-    }, []);
+    return {
+        props: {
+            planets,
+        },
+        revalidate: 60,
+    };
+}
 
+type PlanetsProps = {
+    planets: Planet[];
+};
+
+export default function Planets({ planets }: PlanetsProps) {
     return (
         <Layout>
             <div className="flex flex-col items-center">
