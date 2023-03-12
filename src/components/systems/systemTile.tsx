@@ -27,7 +27,7 @@ export default function SystemTile({ system }: SystemTileProps) {
             </p>
             {system.image && (
                 <Image
-                    className="mb-4 rounded-lg"
+                    className="mb-4 h-auto w-72 rounded-lg"
                     src={system.image}
                     width={200}
                     height={200}

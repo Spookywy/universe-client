@@ -29,7 +29,7 @@ export function AstronomicalObjectTile({
             </p>
             {astronomicalObject.image && (
                 <Image
-                    className="mb-4 rounded-lg"
+                    className="mb-4 h-auto w-72 rounded-lg"
                     src={astronomicalObject.image}
                     width={200}
                     height={200}
