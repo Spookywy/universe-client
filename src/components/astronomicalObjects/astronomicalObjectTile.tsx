@@ -1,11 +1,10 @@
 import { rawApiClient } from "@/apis/configs/apiClient";
 import AstronomicalObject from "@/models/astronomicalObjects/astronomicalObject";
 import Star from "@/models/astronomicalObjects/star";
-import PlanetarySystem from "@/models/systems/planetarySystem";
 import { faDatabase } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 type AstronomicalObjectTileProps = {
     astronomicalObject: AstronomicalObject;
@@ -14,19 +13,14 @@ type AstronomicalObjectTileProps = {
 export function AstronomicalObjectTile({
     astronomicalObject,
 }: AstronomicalObjectTileProps) {
-    const [planetarySystem, setPlanetary_system] = useState<
-        PlanetarySystem | undefined
-    >(undefined);
-
     const isStar = () => {
         return "classification" in astronomicalObject;
     };
 
-    useEffect(() => {
+    const { data: planetarySystem } = useSWR(
+        astronomicalObject.planetary_system,
         rawApiClient
-            .get(astronomicalObject.planetary_system)
-            .then((response) => setPlanetary_system(response.data));
-    }, [astronomicalObject.planetary_system]);
+    );
 
     return (
         <div className="m-5 flex w-96 flex-col items-center rounded-lg bg-slate-50 p-5 shadow-xl">

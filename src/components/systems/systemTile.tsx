@@ -1,29 +1,24 @@
 import { rawApiClient } from "@/apis/configs/apiClient";
-import Galaxy from "@/models/systems/galaxy";
 import PlanetarySystem from "@/models/systems/planetarySystem";
 import System from "@/models/systems/system";
 import { faDatabase } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 type SystemTileProps = {
     system: System;
 };
 
 export default function SystemTile({ system }: SystemTileProps) {
-    const [galaxy, setGalaxy] = useState<Galaxy | undefined>(undefined);
-
     const isPlanetarySystem = () => {
         return "galaxy" in system;
     };
 
-    useEffect(() => {
-        if (isPlanetarySystem())
-            rawApiClient
-                .get((system as PlanetarySystem).galaxy)
-                .then((response) => setGalaxy(response.data));
-    });
+    const { data: galaxy } = useSWR(
+        isPlanetarySystem() ? (system as PlanetarySystem).galaxy : null,
+        rawApiClient
+    );
 
     return (
         <div className="m-5 flex w-96 flex-col items-center rounded-lg bg-slate-50 p-5 shadow-xl">
